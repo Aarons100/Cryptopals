@@ -54,7 +54,7 @@ char * single_byte_xor(char byte, char * input, int size) {
 
 int main(int argc, char * argv[]) {
 	
-	    FILE * fp;
+	   FILE * fp;
        char * line = NULL;
        size_t len = 0;
        ssize_t read;
