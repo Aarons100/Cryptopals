@@ -35,16 +35,46 @@ char * atoh(char * input){
 	return result;
 }
 
+char * xor(char * input1, char * input2, int size) {
+
+	char * result = malloc(size);
+	for (int i = 0; i < size; i++){
+		result[i] = input1[i] ^ input2[i];
+
+	}
+	return result;
+}
+
 int main(int argc, char * argv[]) {
 	
-	char * input = argv[1];
+	char * input1 = argv[1];
+	char * input2 = argv[2];
 
-	int size = strlen(input);
-	char * hex = atoh(input);
+	int size = strlen(input1);
 
+	char * hex1 = atoh(input1);
+	char * hex2 = atoh(input2);
+
+	char * result = xor(hex1,hex2,size);
+
+	printf("input 1: ");
 	for(int i = 0; i < size/2; i++){
-		printf("%x ",hex[i]);
+		printf("%x ",hex1[i]);	
 	}
+	printf("\n");
+
+	printf("input 2: ");
+	for(int i = 0; i < size/2; i++){
+		printf("%x ",hex2[i]);	
+	}
+	printf("\n");
+
+	printf("result: ");
+	for(int i = 0; i < size/2; i++){
+		printf("%x ",result[i]);	
+	}
+	printf("\n");
+
 
 	return 0;
 }
