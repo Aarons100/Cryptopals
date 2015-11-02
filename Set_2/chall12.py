@@ -10,7 +10,7 @@ def pad(my_input,block_size):
 	target = my_input
 	pad = block_size - (len(target) % block_size)
 	for i in xrange(0,pad):
-		target += "\x00"
+		target += "\x04"
 
 	return target
 

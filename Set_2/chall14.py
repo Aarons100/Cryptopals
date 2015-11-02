@@ -55,11 +55,6 @@ for i in xrange(0,16):
 sol = ""
 for i in xrange(0,len(string)):
 
-	#ptxt = "A"*15 + string[i]
-	#ptxt = pad(ptxt, 16)
-
-	#ctxt = binascii.hexlify(ECB_Encrypt(ptxt,rand_key))
-
 	for j in xrange(0,16):
 
 		ptxt = rand_prepend + "B"*32 + "B"*j + "A"*15 + string[i:]	
