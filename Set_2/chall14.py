@@ -25,26 +25,50 @@ def CBC_Encrypt(target,key, IV):
 	return cipher.encrypt(target)
 
 random.seed()
-
 string = "Um9sbGluJyBpbiBteSA1LjAKV2l0aCBteSByYWctdG9wIGRvd24gc28gbXkgaGFpciBjYW4gYmxvdwpUaGUgZ2lybGllcyBvbiBzdGFuZGJ5IHdhdmluZyBqdXN0IHRvIHNheSBoaQpEaWQgeW91IHN0b3A/IE5vLCBJIGp1c3QgZHJvdmUgYnkK"
 string = base64.b64decode(string)
 rand_key = os.urandom(16)
 
+#create dictionary
 dictionary = []
-
 for i in xrange(0,256):
-
 	foo = "A"* 15 + chr(i)
 	bar = ECB_Encrypt(foo,rand_key)
 	dictionary.append(binascii.hexlify(bar))
+#create random prepend
+num_bytes = random.randint(0,128)
+rand_prepend = os.urandom(num_bytes)
+
+base = binascii.hexlify(ECB_Encrypt("B"*16,rand_key))
+
+for i in xrange(0,16):
+
+	ptxt = rand_prepend + "B"*32 + "B"*i + string	
+	ctxt = ECB_Encrypt(pad(ptxt,16),rand_key) 
+	result = binascii.hexlify(ctxt).split(base)
+
+	if len(result) == 3:
+		break
+
+	#print result
 
 sol = ""
 for i in xrange(0,len(string)):
 
-	ptxt = "A"*15 + string[i]
-	ptxt = pad(ptxt, 16)
+	#ptxt = "A"*15 + string[i]
+	#ptxt = pad(ptxt, 16)
 
-	ctxt = binascii.hexlify(ECB_Encrypt(ptxt,rand_key))
+	#ctxt = binascii.hexlify(ECB_Encrypt(ptxt,rand_key))
+
+	for j in xrange(0,16):
+
+		ptxt = rand_prepend + "B"*32 + "B"*j + "A"*15 + string[i:]	
+		ctxt = ECB_Encrypt(pad(ptxt,16),rand_key) 
+		result = binascii.hexlify(ctxt).split(base)
+
+		if len(result) == 3:
+			ctxt = result[2]
+			break
 
 	for j in xrange(0,256):
 
@@ -52,3 +76,4 @@ for i in xrange(0,len(string)):
 			sol += chr(j)
 
 print sol
+#print result

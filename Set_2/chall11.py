@@ -27,9 +27,6 @@ def CBC_Encrypt(target,key, IV):
 
 random.seed()
 
-def detect(ctxt):
-	return 0
-
 for i in xrange(0,10):
 	print "Run #",i+1
 
