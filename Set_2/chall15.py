@@ -9,6 +9,15 @@ def pad(my_input,block_size):
 
 	return target
 
+def parse_function(my_input):
+	result = "{\n"
+	foo = my_input.split("&")
+
+	for i in xrange(0,len(foo)):
+		result +="\t" + foo[i].replace("=",": '") + "'\n"
+	result += "}"
+	return result
+
 def unpad(plaintext):
 	pad = ord(plaintext[-1])
 	all_padding = plaintext[-pad:]
