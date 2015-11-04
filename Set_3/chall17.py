@@ -84,6 +84,7 @@ Intermediate_ctxt = []
 client_data = client_sim(rand_key,IV)
 
 result = server_sim(client_data,rand_key,IV)
+
 """
 num_blocks = len(client_data)/16
 print "blocks",num_blocks
