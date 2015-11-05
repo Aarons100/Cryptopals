@@ -19,13 +19,13 @@ def CTR_Decrypt(ctxt,key):
 	return result
 
 string = "L77na/nrFsKvynd6HzOoG7GHTLXsTVu9qvY/2syLXzhPweyyMTJULu/6/kXX0KSvoOLSFQ=="
-
 string = base64.b64decode(string)
-#print string
-#print len(string)
+
 secret = "\x00"*8 + "\x03" + "\x00"*7
 key = "YELLOW SUBMARINE"
 
 ptxt = CTR_Decrypt(string,key)
 
 print ptxt
+
+test = CTR_Encrypt()
