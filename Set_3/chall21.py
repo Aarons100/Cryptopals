@@ -1,5 +1,7 @@
 import random
 import os
+import time
+import math
 
 def _int32(x):
     # Get the 32 least significant bits.
@@ -49,7 +51,21 @@ class MT19937:
 
 random.seed()
 
-twister = MT19937(ord(os.urandom(1)))
+results = []
 
-twister.twist()
-print twister.extract_number()
+while 1:
+    foo = random.randint(10,60)
+    print "sleeping for",foo,"seconds"
+    time.sleep(foo)
+    
+    timestamp = int(math.floor(time.time()))
+    print "timestamp:",timestamp
+    twister = MT19937(timestamp)
+    
+    foo = random.randint(10,60)
+    print "sleeping for",foo,"seconds"
+    time.sleep(foo)
+
+    output = twister.extract_number()
+    results.append(output)
+    print "result:",output
