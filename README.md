@@ -27,6 +27,6 @@ Set 3:
 	Chall 20 - 
 	Chall 21 - Done
 	Chall 22 - Done, but the attack requires quite a few minutes and I felt like moving on
-	Chall 23 - 
+	Chall 23 - Done, didn't want to destroy my MT19937 class to actually clone my own twister though
 	Chall 24 - Done
 
