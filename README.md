@@ -28,5 +28,5 @@ Set 3:
 	Chall 21 - Done
 	Chall 22 - Done, but the attack requires quite a few minutes and I felt like moving on
 	Chall 23 - 
-	Chall 24 - 
+	Chall 24 - Done
 
