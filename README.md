@@ -21,9 +21,9 @@ Set 2:
 	Chall 16 - Done
 
 Set 3:
-	Chall 17 - Partially Done
+	Chall 17 - Firm understanding of attack, can guess first character, full implementation of algorithm didn't seem necessary
 	Chall 18 - Done
-	Chall 19 - 
+	Chall 19 - Have firm understanding, implementing attack (Frequency analysis) didnt seem necessary
 	Chall 20 - 
 	Chall 21 - Done
 	Chall 22 - 
