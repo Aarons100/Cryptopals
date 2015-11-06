@@ -49,3 +49,23 @@ class MT19937:
                 self.mt[i] = self.mt[i] ^ 0x9908b0df
         self.index = 0
 
+random.seed()
+
+results = []
+
+while 1:
+    foo = random.randint(10,60)
+    print "sleeping for",foo,"seconds"
+    time.sleep(foo)
+    
+    timestamp = int(math.floor(time.time()))
+    print "timestamp:",timestamp
+    twister = MT19937(timestamp)
+    
+    foo = random.randint(10,60)
+    print "sleeping for",foo,"seconds"
+    time.sleep(foo)
+
+    output = twister.extract_number()
+    results.append(output)
+    print "result:",output
