@@ -85,21 +85,26 @@ client_data = client_sim(rand_key,IV)
 
 result = server_sim(client_data,rand_key,IV)
 
-"""
+print CBC_Decrypt(client_data,rand_key,IV)
 num_blocks = len(client_data)/16
 print "blocks",num_blocks
+itxt = []
+for i in xrange(0,1):
 
-for i in xrange((num_blocks-1)*16,(num_blocks-2)*16,-1):
-	for j in xrange(0,255):
+	target_block = client_data[i*16:(i+1)*16]
+	#print binascii.hexlify(target_block)
 
-		foo = client_data[0:i] + struct.pack("B",j) + client_data[i+1:]
+	for k in xrange(15,-1,-1):
+		for j in xrange(0,255):
+			foo = target_block[0:k] + struct.pack("B",j) + target_block[k+1:] + client_data[(i+1)*16:(i+2)*16]
+			#print binascii.hexlify(foo)
+			#break
+			result = server_sim(foo,rand_key,IV)
 
-		result = server_sim(foo,rand_key,IV)
+			if result == 0:
+				itxt.append(chr(j ^ ord(target_block[15])))
 
-		if result == 0:
-			Intermediate_ctxt.append(struct.pack("B",j))
-			break
-for i in xrange(len(client_data)-1,-1,-1):
+				break
 
-	print chr(ord(Intermediate_ctxt[i % 16]) ^ ord(client_data[i]))
-"""
+
+print itxt
