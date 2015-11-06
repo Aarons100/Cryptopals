@@ -21,7 +21,7 @@ def CTR_Decrypt(ctxt,key):
 	return result
 """
 
-def CTR_Enc(ptxt,key,nonce):
+def AES_CTR(ptxt,key,nonce):
 	keystream = ""
 	cipher = AES.new(key,AES.MODE_ECB)
 	block_len = int(math.ceil(len(ptxt)/16))
@@ -42,6 +42,19 @@ def CTR_Enc(ptxt,key,nonce):
 
 string = "L77na/nrFsKvynd6HzOoG7GHTLXsTVu9qvY/2syLXzhPweyyMTJULu/6/kXX0KSvoOLSFQ=="
 string = base64.b64decode(string)
+
+key = "YELLOW SUBMARINE"
+nonce = "\x00"*8
+
+print binascii.hexlify(string)
+result = AES_CTR(string,key,nonce)
+print result
+
+resultB = AES_CTR(result,key,nonce)
+
+print binascii.hexlify(resultB)
+
+print AES_CTR(resultB,key,nonce)
 """
 secret = "\x00"*8 + "\x03" + "\x00"*7
 key = "YELLOW SUBMARINE"
@@ -52,7 +65,3 @@ print ptxt
 
 test = CTR_Encrypt()
 """
-key = "YELLOW SUBMARINE"
-nonce = "\x00"*8
-
-print CTR_Enc(string,key,nonce)

@@ -6,6 +6,7 @@ import sys
 import os
 import binascii
 import struct
+import math
 
 strings = [
 "SSBoYXZlIG1ldCB0aGVtIGF0IGNsb3NlIG9mIGRheQ==",
@@ -50,21 +51,33 @@ strings = [
 "QSB0ZXJyaWJsZSBiZWF1dHkgaXMgYm9ybi4="
 ]
 
-def encrypt_strings(ptxt, key, secret):
-	ctxts = []
-	for i in ptxt:
-		cipher = AES.new(key,AES.MODE_CTR, counter = lambda: secret)
-		ctxts.append(cipher.encrypt(base64.b64decode(i)))
-	return ctxts
+def AES_CTR(ptxt,key,nonce):
+	keystream = ""
+	cipher = AES.new(key,AES.MODE_ECB)
+	block_len = int(math.ceil(len(ptxt)/16))
+	if len(ptxt) % 16:
+		block_len += 1
+	print "block count:", block_len
 
-def decrypt_strings(ctxt, key, secret):
-	ptxts = []
-	for i in ctxt:
-		cipher = AES.new(key,AES.MODE_CTR, counter = lambda: secret)
-		ptxts.append(cipher.decrypt(i))
-	return ptxts
+	for i in xrange(0,block_len):
 
-key = os.urandom(16)
-secret = "\x00"*16
+		target = nonce + struct.pack("<I",i) + "\x00"*4
+		#print binascii.hexlify(target) 
+		keystream += cipher.encrypt(target)
+	result = ""
+	for i in xrange(0,len(ptxt)):
+		result += chr(ord(ptxt[i]) ^ ord(keystream[i]))
 
-ctxts = encrypt_strings(strings,key,secret)
+	return result
+#init code
+ctxts = []
+rand_key = os.urandom(16)
+nonce = "\x00"*8
+for i in xrange(0,len(strings)):
+	ctxts.append(AES_CTR(base64.b64decode(strings[i]),rand_key,nonce))
+
+#ctxt byte ^ ptxt byte = keystreambyte
+
+#ctxt byte ^ keystreambyte = ptxt, keystreambyte is the same
+
+#attack just comes down to guessing trigrams and doing frequency analysis
