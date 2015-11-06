@@ -26,7 +26,7 @@ Set 3:
 	Chall 19 - Have firm understanding, implementing attack (Frequency analysis) didnt seem necessary
 	Chall 20 - 
 	Chall 21 - Done
-	Chall 22 - 
+	Chall 22 - Done, but the attack requires quite a few minutes and I felt like moving on
 	Chall 23 - 
 	Chall 24 - 
 
