@@ -54,21 +54,24 @@ def sha1(data):
 
     return '%08x%08x%08x%08x%08x' % (h0, h1, h2, h3, h4)
 
-def SHA1(my_input):
+def sim_client(in_string):
+    key = "YELLOW SUBMARINE"
 
-    sha_hash = my_input[0:40]
-    if(sha_hash == sha1(my_input[40:])):
-        print my_input[40:]
-    else :
-        print "invalid SHA1 Hash"
+    myhash = sha1(key + in_string)
+    return myhash
 
-in_string = "hello world!"
-myhash = sha1(in_string)
+def sim_server(mac, in_string):
 
-in_string = myhash + in_string
+    key = "YELLOW SUBMARINE"
 
-SHA1(in_string)
+    testhash = sha1(key + in_string)
 
-fake_string = "\x10"*40 + in_string
+    if testhash != mac:
+        print "string has been tampered with"
+    else:
+        print "valid string"
 
-SHA1(fake_string)
+
+client_hash = sim_client("hello world!")
+
+sim_server(client_hash,"hello world!")
