@@ -30,3 +30,5 @@ Set 3:
 	Chall 23 - Done, didn't want to destroy my MT19937 class to actually clone my own twister though
 	Chall 24 - Done
 
+Set 4:
+	Chall 25 - Done
