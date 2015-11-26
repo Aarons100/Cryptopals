@@ -33,3 +33,4 @@ Set 3:
 Set 4:
 	Chall 25 - Done
 	Chall 26 - Done
+	Chall 27 - Done
