@@ -6,20 +6,6 @@ import os
 import binascii
 import struct
 import math
-#pycrypto wrappers
-"""
-def CTR_Encrypt(ptxt, key,secret):
-	cipher = AES.new(key,AES.MODE_CTR, counter = lambda: secret)
-	return cipher.encrypt(ptxt)
-
-def CTR_Decrypt(ctxt,key):
-	result = ""
-	for i in xrange(0,4):
-		secret = "\x00"*8 + struct.pack("B",i) + "\x00"*7
-		AES_CTR = AES.new(key,AES.MODE_CTR, counter = lambda: secret)
-		result += AES_CTR.decrypt(ctxt)[i*16:(i+1)*16]
-	return result
-"""
 
 def AES_CTR(ptxt,key,nonce):
 	keystream = ""

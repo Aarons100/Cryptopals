@@ -65,7 +65,7 @@ def decrypt(ctxt, rand_key, IV):
 		if i[0] == "admin":
 			if i[1] == "true":
 				print "admin found"
-	return result;
+	return result
 
 random.seed()
 rand_key = "A"*16
@@ -77,10 +77,9 @@ flipbit = output[33]
 new_ctxt = output[0:33] + flipbits + output[44:]
 
 print len(output), len(new_ctxt)
-#print_string(new_ctxt)
+
 for i in flipbit:
 	print hex(ord(i))
 print_string(new_ctxt)
-#decrypt(ou,rand_key,IV)
 diff = decrypt(new_ctxt,rand_key,IV)
 
