@@ -80,6 +80,6 @@ print len(output), len(new_ctxt)
 
 for i in flipbit:
 	print hex(ord(i))
+
 print_string(new_ctxt)
 diff = decrypt(new_ctxt,rand_key,IV)
-

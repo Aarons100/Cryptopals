@@ -60,11 +60,14 @@ def sim_client(in_string):
     myhash = sha1(key + in_string)
     return myhash
 
-def sim_server(mac, in_string):
+def SHA1(in_string):
 
     key = "YELLOW SUBMARINE"
 
-    testhash = sha1(key + in_string)
+    mac = in_string[0:40]
+    message = in_string[40:]
+
+    testhash = sha1(key + message)
 
     if testhash != mac:
         print "string has been tampered with"
@@ -74,4 +77,8 @@ def sim_server(mac, in_string):
 
 client_hash = sim_client("hello world!")
 
-sim_server(client_hash,"hello world!")
+SHA1(client_hash + "hello world!")
+
+
+
+
