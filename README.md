@@ -36,3 +36,4 @@ Set 4:
 	Chall 27 - Done
 	Chall 28 - Done
 	Chall 29 - Done
+	Chall 30 - Trivial to complete, however a large ammount of coding is required since we need to use MD4 instead of SHA1
