@@ -57,7 +57,7 @@ for i in xrange(0,0xff):
 			break
 
 print sol
-for _ in xrange(0,30):
+for _ in xrange(0,120):
 	for j in xrange(0,0xff):
 		diff = 0
 		before = time.time()
