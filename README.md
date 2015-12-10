@@ -40,3 +40,5 @@ Set 4:
 	Chall 31 - Done
 	Chall 32 - Same attack as chall 31, but more precise timing, so I omitted this challenge
 	
+Set 5:
+	Chall 33 - Done
