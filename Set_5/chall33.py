@@ -2,6 +2,7 @@ import random
 import os
 import struct
 import math
+import binascii
 
 def modexp ( g, u, p ):
 	"""computes s = (g ^ u) mod p
@@ -30,7 +31,7 @@ B = modexp(g,b,p)
 #B = pow(g,b) % p
 
 #s1 = pow(B,a) % 37
-s1 = modexp(B,a,p)
+s1 = modexp(A,b,p)
 s2 = modexp(B,a,p)
 #s2 = pow(A,b,p) % 37
 
