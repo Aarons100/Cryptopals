@@ -1,3 +1,7 @@
+#sending 0 as the Client A value causes Server_S = 0, 
+#if the Client sets Client_S to 0, the server authenticates the client
+#regardless of the password.
+
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from Crypto.Hash import HMAC
